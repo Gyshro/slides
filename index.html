@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Mago: Mistério, Realidade e Transformação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-blue: #0a1f3f;
+            --light-blue: #407afc;
+            --bright-blue: #4f7fff;
+            --black: #000000;
+            --red: #ab0202;
+            --yellow: #ffe014;
+            --pale-yellow: #f3e16f;
+            --white: #ffffff;
+            --gray-dark: #1a1a1a;
+            --gray-light: #e8e8e8;
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background: var(--black);
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--black) 50%, var(--dark-blue) 100%);
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 60px;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--black) 100%);
+            animation: slideIn 0.8s ease-out forwards;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(79, 127, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(79, 127, 255, 0.8);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                border-color: var(--light-blue);
+                box-shadow: 0 0 10px rgba(64, 122, 252, 0.3);
+            }
+            50% {
+                border-color: var(--red);
+                box-shadow: 0 0 20px rgba(171, 2, 2, 0.5);
+            }
+        }
+
+        /* Slide 1: Título */
+        .slide-1 {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--black) 50%, var(--red) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-1::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(79, 127, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .slide-1::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(171, 2, 2, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        .slide-1 h1 {
+            font-size: 5em;
+            font-weight: bold;
+            color: var(--white);
+            text-shadow: 0 0 30px rgba(79, 127, 255, 0.6), 0 0 60px rgba(171, 2, 2, 0.4);
+            margin-bottom: 20px;
+            animation: glowPulse 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-1 p {
+            font-size: 1.8em;
+            color: var(--pale-yellow);
+            font-style: italic;
+            text-shadow: 0 0 15px rgba(255, 224, 20, 0.3);
+            animation: slideUp 1s ease-out 0.3s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Slide 2-12: Conteúdo */
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide h2 {
+            font-size: 3.5em;
+            margin-bottom: 40px;
+            color: var(--light-blue);
+            text-shadow: 0 0 20px rgba(64, 122, 252, 0.5);
+            animation: slideUp 0.8s ease-out;
+            position: relative;
+        }
+
+        .slide h2::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--red), var(--yellow), transparent);
+            animation: expand 1s ease-out;
+        }
+
+        @keyframes expand {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100px;
+            }
+        }
+
+        .slide-content p {
+            font-size: 1.5em;
+            line-height: 1.8;
+            color: var(--gray-light);
+            max-width: 900px;
+            animation: slideUp 0.8s ease-out 0.2s both;
+            margin: 20px 0;
+        }
+
+        .slide-content blockquote {
+            font-size: 1.8em;
+            color: var(--pale-yellow);
+            font-style: italic;
+            border-left: 5px solid var(--red);
+            padding-left: 30px;
+            margin: 30px 0;
+            max-width: 800px;
+            animation: slideUp 0.8s ease-out 0.3s both;
+            text-shadow: 0 0 10px rgba(255, 224, 20, 0.2);
+        }
+
+        .slide-content ul {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+
+        .slide-content li {
+            font-size: 1.4em;
+            margin: 20px 0;
+            padding-left: 40px;
+            position: relative;
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        .slide-content li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-size: 1.2em;
+        }
+
+        .slide-content li strong {
+            color: var(--light-blue);
+            text-shadow: 0 0 10px rgba(64, 122, 252, 0.3);
+        }
+
+        /* Slide 3: Origem dos Arquétipos */
+        .slide-3 {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--black) 100%);
+        }
+
+        .slide-3 h2 {
+            color: var(--bright-blue);
+        }
+
+        /* Slide 5: O Mago */
+        .slide-5 {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-blue) 50%, var(--red) 100%);
+        }
+
+        .slide-5 h2 {
+            color: var(--yellow);
+            text-shadow: 0 0 30px rgba(255, 224, 20, 0.5);
+            font-size: 4em;
+        }
+
+        /* Slide 9-10: Colorimetria */
+        .slide-9, .slide-10 {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--black) 100%);
+        }
+
+        /* Slide 11-12: Frases de Impacto */
+        .slide-11, .slide-12 {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-blue) 50%, var(--red) 100%);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-11 h2, .slide-12 h2 {
+            color: var(--red);
+            text-shadow: 0 0 30px rgba(171, 2, 2, 0.6);
+            margin-bottom: 60px;
+        }
+
+        .slide-11 blockquote, .slide-12 blockquote {
+            font-size: 2.2em;
+            color: var(--yellow);
+            font-style: italic;
+            text-shadow: 0 0 20px rgba(255, 224, 20, 0.4);
+            border-left: 8px solid var(--red);
+            padding-left: 40px;
+            max-width: 900px;
+            line-height: 1.8;
+        }
+
+        /* Controles */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1em;
+            background: linear-gradient(135deg, var(--light-blue), var(--bright-blue));
+            color: var(--white);
+            border: 2px solid var(--red);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(64, 122, 252, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, var(--red), var(--bright-blue));
+            box-shadow: 0 0 25px rgba(171, 2, 2, 0.6);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Indicador de Slide */
+        .slide-indicator {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2em;
+            color: var(--light-blue);
+            text-shadow: 0 0 10px rgba(64, 122, 252, 0.5);
+            z-index: 1000;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        /* Decorações de Teatro */
+        .theatrical-decoration {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .decoration-top {
+            top: 20px;
+            left: 20px;
+            font-size: 3em;
+            color: var(--red);
+        }
+
+        .decoration-bottom {
+            bottom: 20px;
+            right: 20px;
+            font-size: 3em;
+            color: var(--yellow);
+        }
+
+        /* Responsividade para Impressão */
+        @media print {
+            .controls, .slide-indicator {
+                display: none;
+            }
+
+            .slide {
+                page-break-after: always;
+                height: auto;
+                min-height: 100vh;
+                display: flex !important;
+                animation: none;
+            }
+
+            .slide-1::before, .slide-1::after {
+                display: none;
+            }
+        }
+
+        /* Animações adicionais */
+        @keyframes shimmer {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .shimmer {
+            animation: shimmer 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Título -->
+        <div class="slide slide-1 active">
+            <div class="theatrical-decoration decoration-top">🎭</div>
+            <h1>O MAGO</h1>
+            <p>Mistério, Realidade e Transformação</p>
+            <div class="theatrical-decoration decoration-bottom">✦</div>
+        </div>
+
+        <!-- Slide 2: Introdução ao Arquétipo -->
+        <div class="slide slide-2">
+            <div class="slide-content">
+                <h2>Arquétipo</h2>
+                <p>Arquétipos de marca são modelos universais de comportamento que ajudam a construir a <strong>personalidade</strong>, o <strong>tom de voz</strong> e a <strong>conexão emocional</strong> de uma marca com o público.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Origem dos Arquétipos -->
+        <div class="slide slide-3">
+            <div class="slide-content">
+                <h2>A Essência de Carl Jung</h2>
+                <p>Inspirados na psicologia de <strong>Carl Jung</strong>, esses arquétipos refletem desejos humanos profundos, como liberdade, pertencimento, segurança, inovação, entre outros.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: O Poder do Arquétipo na Marca -->
+        <div class="slide slide-4">
+            <div class="slide-content">
+                <h2>Impacto na Marca</h2>
+                <p>Ao adotar um arquétipo, a marca ganha <strong>clareza sobre quem ela é</strong>, como se comunica e o que entrega além do produto.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Apresentando o Arquétipo do Mago -->
+        <div class="slide slide-5">
+            <div class="slide-content">
+                <h2>O Mago</h2>
+                <blockquote>O arquétipo do mago fala da <strong>transformação da realidade</strong> e do <strong>senso comum</strong>. Sua personalidade conta com um ar de mistério, visão, criatividade, disrupção, ilusão e magia.</blockquote>
+            </div>
+        </div>
+
+        <!-- Slide 6: A Essência do Mago -->
+        <div class="slide slide-6">
+            <div class="slide-content">
+                <h2>A Magia da Essência</h2>
+                <p>É uma essência leve, que brinca com o <strong>misticismo</strong>, com o <strong>idealismo</strong> e o <strong>sobrenatural</strong>. Assim como Jano e o "Cara ou coroa?", o Mago lida com dualidades e escolhas invisíveis.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Mago - Realidade vs. Consequência -->
+        <div class="slide slide-7">
+            <div class="slide-content">
+                <h2>Dualidades do Mago</h2>
+                <blockquote><strong>Aparência versus realidade</strong>, <strong>desejo versus consequência</strong>. Ele convida o público a perceber o que está por trás das <strong>máscaras digitais</strong>, trazendo consciência para decisões que parecem simples, mas carregam impacto real.</blockquote>
+            </div>
+        </div>
+
+        <!-- Slide 8: Colorimetria - O Porquê -->
+        <div class="slide slide-8">
+            <div class="slide-content">
+                <h2>Colorimetria: O Porquê</h2>
+                <p>A cor é uma <strong>linguagem</strong>. Ela evoca emoções e transmite significados profundos, influenciando nossa percepção e comportamento.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Psicologia das Cores (Parte 1) -->
+        <div class="slide slide-9">
+            <div class="slide-content">
+                <h2>A Psicologia das Cores</h2>
+                <ul>
+                    <li><strong>Vermelho:</strong> euforia, dopamina, paixão, raiva; intensidade da experiência digital.</li>
+                    <li><strong>Preto:</strong> mistério, ausência de luz; pressão, confusão e despersonalização.</li>
+                    <li><strong>Azul:</strong> tristeza, desespero; consequências do excesso, lágrimas, chuva, isolamento emocional.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 10: Psicologia das Cores (Parte 2) -->
+        <div class="slide slide-10">
+            <div class="slide-content">
+                <h2>A Psicologia das Cores</h2>
+                <ul>
+                    <li><strong>Amarelo:</strong> esperança, foco no presente, recompensa de se reconectar com o mundo real.</li>
+                    <li><strong>Verde:</strong> crescimento, raízes, sabedoria, florescimento da personalidade; reconexão com si.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11: Frase de Impacto 1 -->
+        <div class="slide slide-11">
+            <div class="slide-content">
+                <h2>Reflexão Obscura</h2>
+                <blockquote>Jogar é divertido, até que a aposta seja você.</blockquote>
+            </div>
+        </div>
+
+        <!-- Slide 12: Frase de Impacto 2 -->
+        <div class="slide slide-12">
+            <div class="slide-content">
+                <h2>O Jogo da Vida</h2>
+                <blockquote>
+                    Cara ou coroa?<br>
+                    Até onde a sua sorte te leva<br>
+                    o que você perdeu quando ganhou o mundo na palma da mão?<br><br>
+                    Celular off é você on para o mundo.<br>
+                    No jogo da vida cada segundo conta.
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles de Navegação -->
+    <div class="controls">
+        <button onclick="previousSlide()">← Anterior</button>
+        <button onclick="nextSlide()">Próximo →</button>
+    </div>
+
+    <!-- Indicador de Slide -->
+    <div class="slide-indicator">
+        <span id="current-slide">1</span> / <span id="total-slides">12</span>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegação por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Inicializar
+        document.getElementById('total-slides').textContent = totalSlides;
+    </script>
+</body>
+</html>
+
